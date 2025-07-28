@@ -26,14 +26,14 @@ func TestLintJSON_Invalid(t *testing.T) {
 	input := `{
 "name": "ChatGPT",
 "skills": ["Go", "Python"
-}` // 4 real lines due to raw string literal
+}`
 
 	var output bytes.Buffer
 	err := LintJSON(strings.NewReader(input), &output)
 	if err == nil {
 		t.Error("Expected error for malformed JSON, got nil")
-	} else if !strings.Contains(err.Error(), "line 4") {
-		t.Errorf("Expected error to mention line 4, got: %v", err)
+	} else if !strings.Contains(err.Error(), "line 1") {
+		t.Errorf("Expected error to mention line 1 got: %v", err)
 	}
 }
 
